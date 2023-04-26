@@ -1,7 +1,7 @@
 name: SORACOM Orbit CI/CD
 on:
   push:
-    branches: [ master 
+    branches: [ master ]
   workflow_dispatch:
 jobs:
   build-and-test:
