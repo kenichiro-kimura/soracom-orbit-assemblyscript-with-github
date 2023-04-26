@@ -1,8 +1,6 @@
 {
   "name": "SORACOM Orbit Development Container",
   "dockerFile": "Dockerfile",
-  "workspaceMount": "source=${localWorkspaceFolder}/../,target=/workspace,type=bind,consistency=delegated",
-  "workspaceFolder": "/workspace/assemblyscript",
   "settings": {
     "terminal.integrated.shell.linux": "/bin/bash",
     "terminal.integrated.shellArgs.linux": ["--init-file", "/workspace/.bashrc"]
@@ -24,8 +22,5 @@
     "SORACOM_AUTHKEY_SECRET": "${localEnv:SORACOM_AUTHKEY_SECRET}",
     "SORACOM_COVERAGE": "${localEnv:SORACOM_COVERAGE}",
     "TZ": "Asia/Tokyo"
-  },
-  "mounts": [
-    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.soracom,target=/root/.soracom,type=bind,consistency=cached"
-  ]
+  }
 }
