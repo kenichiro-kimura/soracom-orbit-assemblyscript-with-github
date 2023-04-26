@@ -9,6 +9,10 @@ jobs:
     container:
       image: ghcr.io/kenichiro-kimura/orbit-assemblyscript:latest
       options: --cpus 1
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GHCR_CONTAINER_REGISTRY_PASSWORD}}
     steps:
       - name: checkout
         uses: actions/checkout@v2
