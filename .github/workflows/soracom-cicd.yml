@@ -20,7 +20,10 @@ jobs:
       - name: initialize
         run: npm run init
       - name: copy libs
-        run: cp -r /workspaces/orbit-sdk-assemblyscript ./
+        run: |
+          cp -r /workspaces/orbit-sdk-assemblyscript $HOME/
+          echo $HOME
+          ls $HOME
       - name: build
         run: npm run build:optimized
 #      - name: test
