@@ -52,5 +52,5 @@ jobs:
           AUTH_KEY_ID: ${{ secrets.AUTH_KEY_ID}}
           COVERAGE: ${{ secrets.COVERAGE }}
         run: | 
-          /usr/local/bin/soracom --coverage-type $COVERAGE --auth-key-id $AUTH_KEY_ID --auth-key $AUTH_KEY - soralets get --soralet-id
-
+          /usr/local/bin/soracom --coverage-type $COVERAGE --auth-key-id $AUTH_KEY_ID --auth-key $AUTH_KEY soralets create --soralet-id soralet-github-action-test
+          /usr/local/bin/soracom --coverage-type $COVERAGE --auth-key-id $AUTH_KEY_ID --auth-key $AUTH_KEY soralets upload --soralet-id soralet-github-action-test --content-type application/octet-stream --body @soralet-optimized.wasm
