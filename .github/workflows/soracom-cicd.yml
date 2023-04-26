@@ -19,6 +19,8 @@ jobs:
           fetch-depth: 0
       - name: initialize
         run: npm run init
+      - name: copy libs
+        run: cp -r /root/orbit-sdk-assemblyscript ~/orbit-sdk-assemblyscript
       - name: build
         run: npm run build:optimized
 #      - name: test
