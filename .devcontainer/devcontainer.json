@@ -3,7 +3,7 @@
   "dockerFile": "Dockerfile",
   "settings": {
     "terminal.integrated.shell.linux": "/bin/bash",
-    "terminal.integrated.shellArgs.linux": ["--init-file", "/workspace/.bashrc"]
+    "terminal.integrated.shellArgs.linux": ["--init-file", "/workspaces/.bashrc"]
   },
   "extensions": [
     "dbaeumer.vscode-eslint",

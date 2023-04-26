@@ -1,0 +1,46 @@
+name: SORACOM Orbit CI/CD
+on:
+  push:
+    branches: [ master ]
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/kenichiro-kimura/orbit-assemblyscript:latest
+      options: --cpus 1
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: initialize
+        run: npm run init
+      - name: build
+        run: npm run build:optimized
+#      - name: test
+#        run: npm run test
+      - name: upload assets
+        uses: actions/upload-artifact@v2
+        with:
+          name: soracom-orbit
+          path: build/soralet-optimized.wasm
+  deploy:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/kenichiro-kimura/orbit-assemblyscript:latest
+      options: --cpus 1
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: soracom-orbit
+      - name: deploy
+        env:
+          AUTH_KEY: ${{ secrets.AUTH_KEY }}
+          AUTH_KEY_ID: ${{ secrets.AUTH_KEY_ID}}
+          COVERAGE: ${{ secrets.COVERAGE }}
+        run: | 
+          /usr/local/bin/soracom --coverage-type $COVERAGE --auth-key-id $AUTH_KEY_ID --auth-key $AUTH_KEY - soralets get --soralet-id
+
