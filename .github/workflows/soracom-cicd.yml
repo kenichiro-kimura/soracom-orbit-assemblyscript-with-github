@@ -22,6 +22,7 @@ jobs:
       - name: copy libs
         run: |
           cp -r /workspaces/orbit-sdk-assemblyscript $HOME/
+          pwd
           echo $HOME
           ls $HOME
       - name: build
