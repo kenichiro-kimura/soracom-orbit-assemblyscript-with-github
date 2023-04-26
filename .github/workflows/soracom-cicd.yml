@@ -20,8 +20,7 @@ jobs:
       - name: initialize
         run: npm run init
       - name: copy libs
-        run: |
-          cp -r /workspaces/orbit-sdk-assemblyscript ../
+        run: cp -r /workspaces/orbit-sdk-assemblyscript ../
       - name: build
         run: npm run build:optimized
 #      - name: test
@@ -37,6 +36,9 @@ jobs:
     container:
       image: ghcr.io/kenichiro-kimura/orbit-assemblyscript:latest
       options: --cpus 1
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GHCR_CONTAINER_REGISTRY_PASSWORD }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
