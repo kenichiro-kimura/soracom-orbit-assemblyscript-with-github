@@ -55,5 +55,8 @@ jobs:
           COVERAGE: ${{ secrets.COVERAGE }}
           SORALET_ID: ${{ env.SORALET_ID }}
         run: | 
-          /usr/local/bin/soracom --coverage-type $COVERAGE --auth-key-id $AUTH_KEY_ID --auth-key $AUTH_KEY soralets create --soralet-id $SORALET_ID
+          x=$(/usr/local/bin/soracom --coverage-type $COVERAGE --auth-key-id $AUTH_KEY_ID --auth-key $AUTH_KEY soralets get --soralet-id $SORALET_ID 2>&1)
+          if [[ $x == "Error"* ]]; then
+            /usr/local/bin/soracom --coverage-type $COVERAGE --auth-key-id $AUTH_KEY_ID --auth-key $AUTH_KEY soralets create --soralet-id $SORALET_ID
+          fi
           /usr/local/bin/soracom --coverage-type $COVERAGE --auth-key-id $AUTH_KEY_ID --auth-key $AUTH_KEY soralets upload --soralet-id $SORALET_ID --content-type application/octet-stream --body @soralet-optimized.wasm
