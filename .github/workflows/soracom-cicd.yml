@@ -1,8 +1,12 @@
 name: SORACOM Orbit CI/CD
+
 on:
   push:
     branches: [ master ]
   workflow_dispatch:
+
+env:
+  SORALET_ID: soralet-github-action-test
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
@@ -22,9 +26,11 @@ jobs:
       - name: copy libs
         run: cp -r /workspaces/orbit-sdk-assemblyscript ../
       - name: build
+        run: npm run build
+      - name: build optimized
         run: npm run build:optimized
-#      - name: test
-#        run: npm run test
+      - name: test
+        run: npm run test
       - name: upload assets
         uses: actions/upload-artifact@v2
         with:
@@ -33,12 +39,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build-and-test
-    container:
-      image: ghcr.io/kenichiro-kimura/orbit-assemblyscript:latest
-      options: --cpus 1
-      credentials:
-        username: ${{ github.actor }}
-        password: ${{ secrets.GHCR_CONTAINER_REGISTRY_PASSWORD }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -46,11 +46,14 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: soracom-orbit
+      - name: install soracom-cli
+        run: curl -fsSL https://raw.githubusercontent.com/soracom/soracom-cli/master/install.sh | bash
       - name: deploy
         env:
           AUTH_KEY: ${{ secrets.AUTH_KEY }}
           AUTH_KEY_ID: ${{ secrets.AUTH_KEY_ID}}
           COVERAGE: ${{ secrets.COVERAGE }}
+          SORALET_ID: ${{ env.SORALET_ID }}
         run: | 
-          /usr/local/bin/soracom --coverage-type $COVERAGE --auth-key-id $AUTH_KEY_ID --auth-key $AUTH_KEY soralets create --soralet-id soralet-github-action-test
-          /usr/local/bin/soracom --coverage-type $COVERAGE --auth-key-id $AUTH_KEY_ID --auth-key $AUTH_KEY soralets upload --soralet-id soralet-github-action-test --content-type application/octet-stream --body @soralet-optimized.wasm
+          /usr/local/bin/soracom --coverage-type $COVERAGE --auth-key-id $AUTH_KEY_ID --auth-key $AUTH_KEY soralets create --soralet-id $SORALET_ID
+          /usr/local/bin/soracom --coverage-type $COVERAGE --auth-key-id $AUTH_KEY_ID --auth-key $AUTH_KEY soralets upload --soralet-id $SORALET_ID --content-type application/octet-stream --body @soralet-optimized.wasm
