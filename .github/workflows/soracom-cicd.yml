@@ -13,10 +13,10 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/kenichiro-kimura/orbit-assemblyscript:latest
+      image: ghcr.io/${{ secrets.GHCR_CONTAINER_REGISTRY_USER }}/orbit-assemblyscript:latest
       options: --cpus 1
       credentials:
-        username: ${{ github.actor }}
+        username: ${{ secrets.GHCR_CONTAINER_REGISTRY_USER }}
         password: ${{ secrets.GHCR_CONTAINER_REGISTRY_PASSWORD }}
     steps:
       - name: checkout

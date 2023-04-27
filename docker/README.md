@@ -17,7 +17,7 @@
 % docker push ghcr.io/{git-user-name}/orbit-assemblyscript:latest
 ```
 
-5. before you use codespaces, add secrets below to `github codespaces secrets` from https://github.com/settings/codespaces 
+5. before you use codespaces, add secrets below to `github codespaces secrets` from https://github.com/{github-user-name}/{repo-name}/settings/secrets/codespaces
   - GHCR_CONTAINER_REGISTRY_SERVER : `ghcr.io`
   - GHCR_CONTAINER_REGISTRY_USER : github accout name
   - GHCR_CONTAINER_REGISTRY_PASSWORD : personal-access-token created in the previous stepAccess Token
