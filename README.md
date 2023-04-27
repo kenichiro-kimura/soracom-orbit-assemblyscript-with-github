@@ -17,4 +17,4 @@ This repository is a sample to use devcontainer / codespaces / github actions fo
   - GHCR_CONTAINER_REGISTRY_USER: user name for github container registry
   - GHCR_CONTAINER_REGISTRY_PASSWORD: a personal access token to access github container registry
 
-2. update a container image name in a [workflow file](./github/workflows/soracom-cicd.yml) to your own
+2. update a container image name and a SORALET_ID in a [workflow file](./github/workflows/soracom-cicd.yml) to your own
