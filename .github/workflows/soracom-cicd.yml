@@ -13,13 +13,11 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/${GHCR_CONTAINER_REGISTRY_USER}/orbit-assemblyscript:latest
+      image: ghcr.io/kenichiro-kimura/orbit-assemblyscript:latest
       options: --cpus 1
       credentials:
         username: ${{ secrets.GHCR_CONTAINER_REGISTRY_USER }}
         password: ${{ secrets.GHCR_CONTAINER_REGISTRY_PASSWORD }}
-      env:
-        GHCR_CONTAINER_REGISTRY_USER: ${{ secrets.GHCR_CONTAINER_REGISTRY_USER }}
     steps:
       - name: checkout
         uses: actions/checkout@v2
