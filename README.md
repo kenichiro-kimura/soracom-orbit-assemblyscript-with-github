@@ -1,6 +1,14 @@
 # orbit-github-test
 
-This repository is a sample to use devcontainer / codespaces / github actions for SORACOM  Orbit.
+This repository is a sample to use devcontainer / codespaces / github actions for developping SORACOM Orbit.
+
+The following files are as distributed by SORACOM. Original files are distributed in https://users.soracom.io/ja-jp/docs/orbit/setup/
+
+- [assembly](./assembly)
+- [tests](./tests)
+- [.gitignore](./.gitignore)
+- [package-lock.json](./package-lock.json)
+- [package.json](./package.json)
 
 # for development 
 
