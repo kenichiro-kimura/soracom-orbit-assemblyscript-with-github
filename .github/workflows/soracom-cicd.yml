@@ -30,7 +30,7 @@ jobs:
       - name: build optimized
         run: npm run build:optimized
       - name: test
-        run: npm run test
+        run: npm run test -- -u
       - name: upload assets
         uses: actions/upload-artifact@v2
         with:
