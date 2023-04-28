@@ -59,6 +59,6 @@ jobs:
           soracom_auth_key_id: ${{ secrets.AUTH_KEY_ID}}
           soracom_coverage: ${{ env.COVERAGE }}
           soracom_soralet_id: ${{ env.SORALET_ID }}
-          soracom_soralet_filename: ${{ steps.download.outputs.download-path }}
+          soracom_soralet_filename: soralet-optimized.wasm
       - name: display result
         run: echo ${{ steps.deploy.outputs.result }}
