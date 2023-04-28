@@ -46,17 +46,11 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: soracom-orbit
-      - name: install soracom-cli
-        run: curl -fsSL https://raw.githubusercontent.com/soracom/soracom-cli/master/install.sh | bash
       - name: deploy
-        env:
-          AUTH_KEY: ${{ secrets.AUTH_KEY }}
-          AUTH_KEY_ID: ${{ secrets.AUTH_KEY_ID}}
-          COVERAGE: ${{ env.COVERAGE }}
-          SORALET_ID: ${{ env.SORALET_ID }}
-        run: | 
-          x=$(/usr/local/bin/soracom --coverage-type $COVERAGE --auth-key-id $AUTH_KEY_ID --auth-key $AUTH_KEY soralets get --soralet-id $SORALET_ID 2>&1)
-          if [[ $x == "Error"* ]]; then
-            /usr/local/bin/soracom --coverage-type $COVERAGE --auth-key-id $AUTH_KEY_ID --auth-key $AUTH_KEY soralets create --soralet-id $SORALET_ID
-          fi
-          /usr/local/bin/soracom --coverage-type $COVERAGE --auth-key-id $AUTH_KEY_ID --auth-key $AUTH_KEY soralets upload --soralet-id $SORALET_ID --content-type application/octet-stream --body @soralet-optimized.wasm
+        uses: kenichiro-kimura/action-soracom-upload-soralet@0.0.1
+        with:
+          soracom_auth_key: ${{ secrets.AUTH_KEY }}
+          soracom_auth_key_id: ${{ secrets.AUTH_KEY_ID}}
+          soracom_coverage: ${{ env.COVERAGE }}
+          soracom_soralet_id: ${{ env.SORALET_ID }}
+          soracom_soralet_filename: soralet-optimized.wasm
