@@ -1,0 +1,33 @@
+name: "SORACOM CLI action"
+description: "SORACOM CLI action"
+
+inputs:
+  soracom_auth_key:
+    description: 'SORACOM AUTH KEY'
+    required: true
+  soracom_auth_key_id:
+    description: 'SORACOM AUTH KEY ID'
+    required: true
+  soracom_coverage:
+    description: 'SORACOM COVERAGE(Default:jp)'
+    required: false
+  soracom_soralet_id:
+    description: 'SORACOM Soralet ID'
+    required: true
+  soracom_soralet_filename:
+    description: 'SORACOM Soralet filename'
+    required: true
+
+outputs:
+  result:
+    description: 'Result of deployment'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    SORACOM_AUTH_KEY: ${{ inputs.soracom_auth_key }}
+    SORACOM_AUTH_KEY_ID: ${{ inputs.soracom_auth_key_id }}
+    SORACOM_COVERAGE: ${{ inputs.soracom_coverage }}
+    SORACOM_SORALET_ID: ${{ inputs.soracom_soralet_id }}
+    SORACOM_SORALET_FILENAME: ${{ inputs.soracom_soralet_id }}

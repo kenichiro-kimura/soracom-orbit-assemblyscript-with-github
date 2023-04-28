@@ -42,14 +42,16 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-and-test
     steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: download artifact
         uses: actions/download-artifact@v2
         with:
           name: soracom-orbit
-      - name: install soracom-cli
-        run: curl -fsSL https://raw.githubusercontent.com/soracom/soracom-cli/master/install.sh | bash
       - name: deploy
-        uses: kenichiro-kimura/action-soracom-upload-soralet@323437def2bb433cc604fd173d13f5cb590072c4
+        uses: ./actions
         with:
           soracom_auth_key: ${{ secrets.AUTH_KEY }}
           soracom_auth_key_id: ${{ secrets.AUTH_KEY_ID}}
