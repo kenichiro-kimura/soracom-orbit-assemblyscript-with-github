@@ -49,7 +49,7 @@ jobs:
       - name: install soracom-cli
         run: curl -fsSL https://raw.githubusercontent.com/soracom/soracom-cli/master/install.sh | bash
       - name: deploy
-        uses: kenichiro-kimura/action-soracom-upload-soralet
+        uses: kenichiro-kimura/action-soracom-upload-soralet@323437def2bb433cc604fd173d13f5cb590072c4
         with:
           soracom_auth_key: ${{ secrets.AUTH_KEY }}
           soracom_auth_key_id: ${{ secrets.AUTH_KEY_ID}}
