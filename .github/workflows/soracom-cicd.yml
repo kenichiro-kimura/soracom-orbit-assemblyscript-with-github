@@ -43,12 +43,10 @@ jobs:
     needs: build-and-test
     steps:
       - name: download artifact
-        id: download
         uses: actions/download-artifact@v2
         with:
           name: soracom-orbit
       - name: deploy
-        id: deploy
         uses: kenichiro-kimura/action-soracom-upload-soralet@0.0.1
         with:
           soracom_auth_key: ${{ secrets.AUTH_KEY }}
