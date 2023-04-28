@@ -47,7 +47,7 @@ jobs:
         with:
           name: soracom-orbit
       - name: deploy
-        uses: kenichiro-kimura/action-soracom-upload-soralet@0.0.1
+        uses: kenichiro-kimura/action-soracom-upload-soralet@0.0.2
         with:
           soracom_auth_key: ${{ secrets.AUTH_KEY }}
           soracom_auth_key_id: ${{ secrets.AUTH_KEY_ID}}
