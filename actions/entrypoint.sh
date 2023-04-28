@@ -25,7 +25,7 @@ then
 fi
 
 SORACOM_ARG="--coverage-type '$SORACOM_COVERAGE' --auth-key-id '$SORACOM_AUTH_KEY_ID' --auth-key '$SORACOM_AUTH_KEY'"
-x = $(/usr/local/bin/soracom $SORACOM_ARG soralets get --soralet-id "$SORACOM_SORALET_ID" 2>&1)
+x=$(/usr/local/bin/soracom $SORACOM_ARG soralets get --soralet-id "$SORACOM_SORALET_ID" 2>&1)
 if [[ $x == "Error"* ]]; then
   /usr/local/bin/soracom $SORACOM_ARG soralets create --soralet-id "$SORACOM_SORALET_ID"
 fi
