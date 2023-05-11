@@ -1,4 +1,4 @@
-# orbit-github-test
+# soracom-orbit-assemblyscript-with-github
 
 This repository is a sample to use devcontainer / codespaces / github actions for developping SORACOM Orbit.
 
