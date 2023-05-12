@@ -52,7 +52,7 @@ jobs:
           name: soracom-orbit
       - name: deploy
         #uses: ./action/
-        uses: kehiciro-kimura/aciton-soracom-upload-soralet@1.1.0
+        uses: kenichiro-kimura/action-soracom-upload-soralet@1.1.0
         with:
           soracom_auth_key: ${{ secrets.AUTH_KEY }}
           soracom_auth_key_id: ${{ secrets.AUTH_KEY_ID}}
