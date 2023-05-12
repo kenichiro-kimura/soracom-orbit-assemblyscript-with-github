@@ -58,3 +58,4 @@ jobs:
           soracom_coverage: ${{ env.COVERAGE }}
           soracom_soralet_id: ${{ env.SORALET_ID }}
           soracom_soralet_filename: soralet-optimized.wasm
+          soracom_delete_old_soralet: true
