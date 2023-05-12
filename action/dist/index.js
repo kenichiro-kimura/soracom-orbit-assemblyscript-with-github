@@ -33834,7 +33834,7 @@ function main() {
         const coverage = core.getInput("soracom_coverage", { required: false }) ? core.getInput("soracom_coverage", { required: false }) : "jp";
         const endpoint = coverage === "g" ? "https://g.api.soracom.io/v1" : "https://api.soracom.io/v1";
         const deleteOldSoralet = core.getInput("soracom_delete_old_soralet", { required: false }) === "true";
-        console.log(deleteOldSoralet);
+        console.log(core.getInput("soracom_delete_old_soralet", { required: false }));
         authApi.basePath = endpoint;
         soraletApi.basePath = endpoint;
         groupApi.basePath = endpoint;
