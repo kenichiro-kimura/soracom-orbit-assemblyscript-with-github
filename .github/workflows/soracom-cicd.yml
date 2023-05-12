@@ -47,10 +47,11 @@ jobs:
         with:
           name: soracom-orbit
       - name: deploy
-        uses: kenichiro-kimura/action-soracom-upload-soralet@1.0.2
+        uses: kenichiro-kimura/action-soracom-upload-soralet@1.1.0
         with:
           soracom_auth_key: ${{ secrets.AUTH_KEY }}
           soracom_auth_key_id: ${{ secrets.AUTH_KEY_ID}}
           soracom_coverage: ${{ env.COVERAGE }}
           soracom_soralet_id: ${{ env.SORALET_ID }}
           soracom_soralet_filename: soralet-optimized.wasm
+          soracom_delete_old_version: true
