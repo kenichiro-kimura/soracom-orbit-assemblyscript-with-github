@@ -1,0 +1,32 @@
+name: "Upload Soralet"
+description: "Upload a soralet to SORACOM platform(SORACOM Orbit)"
+branding:
+  icon: upload-cloud
+  color: blue
+inputs:
+  soracom_auth_key:
+    description: 'SORACOM AUTH KEY'
+    required: true
+  soracom_auth_key_id:
+    description: 'SORACOM AUTH KEY ID'
+    required: true
+  soracom_coverage:
+    description: 'SORACOM COVERAGE(Default:jp)'
+    required: false
+  soracom_soralet_id:
+    description: 'SORACOM Soralet ID'
+    required: true
+  soracom_soralet_filename:
+    description: 'SORACOM Soralet filename'
+    required: true
+  soracom_delete_old_version:
+    description: 'Delete old version of soralet in case of "too many soralet versions" error during upload new soralet(Defualt:false)'
+    required: false
+
+outputs:
+  result:
+    description: 'Result of deployment'
+
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
