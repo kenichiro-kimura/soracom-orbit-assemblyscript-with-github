@@ -18,11 +18,18 @@ The following files are as distributed by SORACOM. Original files are distribute
 
 # for CI/CD
 
-1. add secrets below to `github actions secrets` from https://github.com/{github-user-name}/{repo-name}/settings/secrets/actions
+Add secrets below to `github actions secrets` from https://github.com/{github-user-name}/{repo-name}/settings/secrets/actions
 
   - AUTH_KEY: SORACOM's auth key
   - AUTH_KEY_ID: SORACOM's auth key id
-  - GHCR_CONTAINER_REGISTRY_USER: user name for github container registry
-  - GHCR_CONTAINER_REGISTRY_PASSWORD: a personal access token to access github container registry
+  - SORACOM_GROUP_ID: SORACOM's group id to deploy
 
-2. update a container image name and a SORALET_ID in a [workflow file](./github/workflows/soracom-cicd.yml) to your own
+Create two SIM groups in SORACOM platform, one for staging and the other for production.  
+Set up the `staging` group use $LATEST version soralet, and the `production` group use a specified soralet version.
+
+So,this CI/CD workflow works as below.
+
+1. If you push changes to `master` or `staging` branch, build and upload a soralet to SORACOM Orbit
+2. If you push changes to `master` branch, deploy a soralet to a specified SIM group
+3. A soralet built from `staging` branch will be deployed to `staging` group, and a soralet built from `master` branch will be deployed to `production` group.
+
