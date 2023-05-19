@@ -48,9 +48,9 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: soracom-orbit
-      - name: deploy
-        uses: kenichiro-kimura/action-soracom-upload-soralet@1.1.0
-        id: deploy
+      - name: upload
+        uses: kenichiro-kimura/action-soracom-upload-soralet@1.2.0
+        id: upload
         with:
           soracom_auth_key: ${{ secrets.AUTH_KEY }}
           soracom_auth_key_id: ${{ secrets.AUTH_KEY_ID}}
@@ -58,13 +58,13 @@ jobs:
           soracom_soralet_id: ${{ env.SORALET_ID }}
           soracom_soralet_filename: soralet-optimized.wasm
           soracom_delete_old_soralet: true
-      - name: update orbit configuration
+      - name: deploy
         uses: kenichiro-kimura/action-soracom-simgroup-soralet@1.0.0
         if: github.ref == 'refs/heads/master'
         with:
           soracom_auth_key: ${{ secrets.AUTH_KEY }}
           soracom_auth_key_id: ${{ secrets.AUTH_KEY_ID}}
           soracom_coverage: ${{ env.COVERAGE }}
-          soracom_soralet_code_srn: ${{ steps.deploy.outputs.soralet_srn }}
+          soracom_soralet_code_srn: ${{ steps.upload.outputs.soralet_srn }}
           soracom_soralet_direction: uplink
           soracom_group_id: ${{ secrets.SORACOM_GROUP_ID }}
