@@ -2,7 +2,7 @@ name: SORACOM Orbit CI/CD
 
 on:
   push:
-    branches: [ master ]
+    branches: [ action-development ]
   workflow_dispatch:
 
 env:
@@ -52,7 +52,8 @@ jobs:
           name: soracom-orbit
       - name: deploy
         #uses: ./action/
-        uses: kenichiro-kimura/action-soracom-upload-soralet@1.1.0
+        id: deploy
+        uses: kenichiro-kimura/action-soracom-upload-soralet@05e6d0d85b49a9895009dbcada0a8b6f815cedd4
         with:
           soracom_auth_key: ${{ secrets.AUTH_KEY }}
           soracom_auth_key_id: ${{ secrets.AUTH_KEY_ID}}
@@ -60,3 +61,13 @@ jobs:
           soracom_soralet_id: ${{ env.SORALET_ID }}
           soracom_soralet_filename: soralet-optimized.wasm
           soracom_delete_old_soralet: true
+      - name: update orbit configuration
+        uses: kenichiro-kimura/action-soracom-simgroup-soralet@be0f6fa59cebee395ae20cae03228a940c34ca35
+        with:
+          soracom_auth_key: ${{ secrets.AUTH_KEY }}
+          soracom_auth_key_id: ${{ secrets.AUTH_KEY_ID}}
+          soracom_coverage: ${{ env.COVERAGE }}
+          soracom_soralet_code_srn: ${{ steps.deploy.outputs.soralet_srn }}
+          soracom_soralet_direction: uplink
+          soracom_group_id: ${{ secrets.SORACOM_GROUP_ID }}
+
