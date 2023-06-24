@@ -28,4 +28,6 @@
 % echo $GIT_PAT | docker login ghcr.io -u {github-user-name} --password-stdin
 ```
 
+7. update `.devcontainer/Dockerfile` to use your own container image.
+
 if you push a container image to dockerhub publicly, you must not do step 3-6.
