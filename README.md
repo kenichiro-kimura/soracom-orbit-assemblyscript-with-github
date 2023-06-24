@@ -22,14 +22,12 @@ Add secrets below to `github actions secrets` from https://github.com/{github-us
 
   - AUTH_KEY: SORACOM's auth key
   - AUTH_KEY_ID: SORACOM's auth key id
-  - SORACOM_GROUP_ID: SORACOM's group id to deploy
+  - SORACOM_GROUP_ID_STG : SORACOM's staging group id to deploy
+  - SORACOM_GROUP_ID_PROD: SORACOM's production group id to deploy
 
 Create two SIM groups in SORACOM platform, one for staging and the other for production.  
-Set up the `staging` group use $LATEST version soralet, and the `production` group use a specified soralet version.
 
 So,this CI/CD workflow works as below.
 
 1. If you push changes to `master` or `staging` branch, build and upload a soralet to SORACOM Orbit
-2. If you push changes to `master` branch, deploy a soralet to a specified SIM group
-3. A soralet built from `staging` branch will be deployed to `staging` group, and a soralet built from `master` branch will be deployed to `production` group.
-
+2. A soralet built from `staging` branch will be deployed to `staging` group, and a soralet built from `master` branch will be deployed to `production` group.
