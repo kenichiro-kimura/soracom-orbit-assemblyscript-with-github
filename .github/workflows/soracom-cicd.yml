@@ -2,6 +2,7 @@ name: SORACOM Orbit CI/CD
 
 on:
   push:
+   branches: [ master, staging]
   workflow_dispatch:
 
 env:
