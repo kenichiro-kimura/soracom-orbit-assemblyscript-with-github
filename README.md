@@ -12,9 +12,7 @@ The following files are as distributed by SORACOM. Original files are distribute
 
 # for development 
 
-1. setup orbit development environment, see https://users.soracom.io/ja-jp/docs/orbit/setup/
-2. create a container image, see a document [docker/README.md](./docker/README.md)
-3. you can open forked repository not only in  devcontainer at your local environment but also codespaces
+You can open forked repository not only in  devcontainer at your local environment but also codespaces.
 
 # for CI/CD
 

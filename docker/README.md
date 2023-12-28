@@ -1,5 +1,10 @@
 # A Container image using devcontainer and CI
 
+** important notice **
+
+The `orbit-sdk-assemblyscript` was released on [GitHub](https://github.com/soracom/orbit-sdk-assemblyscript/) in Decenver 2023, you don't need to use this container image.
+
+
 1. copy `orbit-sdk-sasenblyscript` directory and `.bashrc` file and `assemblyscript/.devcontainer/soracom-orbit-tools-vscode.vsix` file from Orbit Development Environment into this directory. (See also https://users.soracom.io/ja-jp/docs/orbit/setup/)
 
 2. build a container image
