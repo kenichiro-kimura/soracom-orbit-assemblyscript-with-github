@@ -22,8 +22,6 @@ jobs:
         run: git clone https://github.com/soracom/orbit-sdk-assemblyscript.git ../orbit-sdk-assemblyscript
       - name: initialize
         run: npm run init
-      - name: copy libs
-        run: cp -r /workspaces/orbit-sdk-assemblyscript ../
       - name: build
         run: npm run build
       - name: build optimized
