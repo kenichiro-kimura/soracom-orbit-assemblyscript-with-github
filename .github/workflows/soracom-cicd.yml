@@ -53,7 +53,7 @@ jobs:
           soracom_soralet_filename: soralet-optimized.wasm
           soracom_delete_old_soralet: true
       - name: deploy staging
-        uses: kenichiro-kimura/action-soracom-configure-orbit@1.1.0
+        uses: kenichiro-kimura/action-soracom-configure-orbit@1.1.1
         if: github.ref == 'refs/heads/staging'
         with:
           soracom_auth_key: ${{ secrets.AUTH_KEY }}
@@ -64,7 +64,7 @@ jobs:
           soracom_group_id: ${{ secrets.SORACOM_GROUP_ID_STG }}
           soracom_soralet_enabled: true
       - name: deploy production
-        uses: kenichiro-kimura/action-soracom-configure-orbit@1.1.0
+        uses: kenichiro-kimura/action-soracom-configure-orbit@1.1.1
         if: github.ref == 'refs/heads/master'
         with:
           soracom_auth_key: ${{ secrets.AUTH_KEY }}
