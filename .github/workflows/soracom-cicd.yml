@@ -44,13 +44,13 @@ jobs:
           name: soracom-orbit
       - name: Load secrets from 1password
         id: op-load-secret
-        uses: password/load-secrets-action@v1
+        uses: 1password/load-secrets-action@v1
         with:
           export-env: false
         env:
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
           AUTH_KEY_ID: op://Soracom/soracomApiKey/AUTH_KEY_ID
-          AUTH_KEY: op://Soracom/soracomApiKey/AUTH_KEY
+          AUTH_KEY:staging op://Soracom/soracomApiKey/AUTH_KEY
       - name: upload
         uses: kenichiro-kimura/action-soracom-upload-soralet@1.2.1
         id: upload
@@ -63,7 +63,7 @@ jobs:
           soracom_delete_old_soralet: true
       - name: deploy staging
         uses: kenichiro-kimura/action-soracom-configure-orbit@1.1.1
-        if: github.ref == 'refs/heads/1password-integration'
+        if: github.ref == 'refs/heads/staging'
         with:
           soracom_auth_key: ${{ steps.op-load-secret.outputs.AUTH_KEY }}
           soracom_auth_key_id: ${{ steps.op-load-secret.outputs.AUTH_KEY_ID}}
