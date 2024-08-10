@@ -2,7 +2,7 @@ name: SORACOM Orbit CI/CD
 
 on:
   push:
-   branches: [ master, staging]
+   branches: [ master, staging, 1password-integration]
   workflow_dispatch:
 
 env:
@@ -42,22 +42,31 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: soracom-orbit
+      - name: Load secrets from 1password
+        id: op-load-secret
+        uses: password/load-secrets-action@v1
+        with:
+          export-env: false
+        env:
+          OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+          AUTH_KEY_ID: op://Soracom/soracomApiKey/AUTH_KEY_ID
+          AUTH_KEY: op://Soracom/soracomApiKey/AUTH_KEY
       - name: upload
         uses: kenichiro-kimura/action-soracom-upload-soralet@1.2.1
         id: upload
         with:
-          soracom_auth_key: ${{ secrets.AUTH_KEY }}
-          soracom_auth_key_id: ${{ secrets.AUTH_KEY_ID}}
+          soracom_auth_key: ${{ steps.op-load-secret.outputs.AUTH_KEY }}
+          soracom_auth_key_id: ${{ teps.op-load-secret.outputs.AUTH_KEY_ID}}
           soracom_coverage: ${{ env.COVERAGE }}
           soracom_soralet_id: ${{ env.SORALET_ID }}
           soracom_soralet_filename: soralet-optimized.wasm
           soracom_delete_old_soralet: true
       - name: deploy staging
         uses: kenichiro-kimura/action-soracom-configure-orbit@1.1.1
-        if: github.ref == 'refs/heads/staging'
+        if: github.ref == 'refs/heads/1password-integration'
         with:
-          soracom_auth_key: ${{ secrets.AUTH_KEY }}
-          soracom_auth_key_id: ${{ secrets.AUTH_KEY_ID}}
+          soracom_auth_key: ${{ steps.op-load-secret.outputs.AUTH_KEY }}
+          soracom_auth_key_id: ${{ teps.op-load-secret.outputs.AUTH_KEY_ID}}
           soracom_coverage: ${{ env.COVERAGE }}
           soracom_soralet_code_srn: ${{ steps.upload.outputs.soralet_srn }}
           soracom_soralet_direction: uplink
@@ -67,8 +76,8 @@ jobs:
         uses: kenichiro-kimura/action-soracom-configure-orbit@1.1.1
         if: github.ref == 'refs/heads/master'
         with:
-          soracom_auth_key: ${{ secrets.AUTH_KEY }}
-          soracom_auth_key_id: ${{ secrets.AUTH_KEY_ID}}
+          soracom_auth_key: ${{ steps.op-load-secret.outputs.AUTH_KEY }}
+          soracom_auth_key_id: ${{ teps.op-load-secret.outputs.AUTH_KEY_ID}}
           soracom_coverage: ${{ env.COVERAGE }}
           soracom_soralet_code_srn: ${{ steps.upload.outputs.soralet_srn }}
           soracom_soralet_direction: uplink
