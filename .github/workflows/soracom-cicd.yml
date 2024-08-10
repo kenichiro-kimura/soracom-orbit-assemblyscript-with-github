@@ -50,7 +50,7 @@ jobs:
         env:
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
           AUTH_KEY_ID: op://Soracom/soracomApiKey/AUTH_KEY_ID
-          AUTH_KEY:staging op://Soracom/soracomApiKey/AUTH_KEY
+          AUTH_KEY: op://Soracom/soracomApiKey/AUTH_KEY
       - name: upload
         uses: kenichiro-kimura/action-soracom-upload-soralet@1.2.1
         id: upload
