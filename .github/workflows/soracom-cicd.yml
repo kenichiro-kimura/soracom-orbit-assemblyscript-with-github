@@ -56,7 +56,7 @@ jobs:
         id: upload
         with:
           soracom_auth_key: ${{ steps.op-load-secret.outputs.AUTH_KEY }}
-          soracom_auth_key_id: ${{ teps.op-load-secret.outputs.AUTH_KEY_ID}}
+          soracom_auth_key_id: ${{ steps.op-load-secret.outputs.AUTH_KEY_ID}}
           soracom_coverage: ${{ env.COVERAGE }}
           soracom_soralet_id: ${{ env.SORALET_ID }}
           soracom_soralet_filename: soralet-optimized.wasm
@@ -66,7 +66,7 @@ jobs:
         if: github.ref == 'refs/heads/1password-integration'
         with:
           soracom_auth_key: ${{ steps.op-load-secret.outputs.AUTH_KEY }}
-          soracom_auth_key_id: ${{ teps.op-load-secret.outputs.AUTH_KEY_ID}}
+          soracom_auth_key_id: ${{ steps.op-load-secret.outputs.AUTH_KEY_ID}}
           soracom_coverage: ${{ env.COVERAGE }}
           soracom_soralet_code_srn: ${{ steps.upload.outputs.soralet_srn }}
           soracom_soralet_direction: uplink
@@ -77,7 +77,7 @@ jobs:
         if: github.ref == 'refs/heads/master'
         with:
           soracom_auth_key: ${{ steps.op-load-secret.outputs.AUTH_KEY }}
-          soracom_auth_key_id: ${{ teps.op-load-secret.outputs.AUTH_KEY_ID}}
+          soracom_auth_key_id: ${{ steps.op-load-secret.outputs.AUTH_KEY_ID}}
           soracom_coverage: ${{ env.COVERAGE }}
           soracom_soralet_code_srn: ${{ steps.upload.outputs.soralet_srn }}
           soracom_soralet_direction: uplink
