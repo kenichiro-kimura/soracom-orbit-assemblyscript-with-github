@@ -2,7 +2,7 @@ name: SORACOM Orbit CI/CD
 
 on:
   push:
-   branches: [ master, staging, 1password-integration]
+   branches: [ master, staging ]
   workflow_dispatch:
 
 env:
