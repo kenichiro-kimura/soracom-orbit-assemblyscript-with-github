@@ -1,6 +1,8 @@
 {
   "name": "SORACOM Orbit Development Container",
   "dockerFile": "Dockerfile",
+  "workspaceFolder": "/workspace/${localWorkspaceFolder}",
+  "remoteUser":"node",
   "settings": {
     "terminal.integrated.shell.linux": "/bin/bash",
     "terminal.integrated.shellArgs.linux": ["--init-file", "/workspaces/.bashrc"]
